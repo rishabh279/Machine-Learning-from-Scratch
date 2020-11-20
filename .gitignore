@@ -5,3 +5,4 @@ __pycache__/*
 Deep_Learning/data/*
 Machine_Learning/ml_implementations/__pycache__/*
 utils/__pycache__/*
+Machine_Learning/utils/__pycache__/*
