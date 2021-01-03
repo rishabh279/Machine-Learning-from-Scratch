@@ -6,3 +6,5 @@ Deep_Learning/data/*
 Machine_Learning/ml_implementations/__pycache__/*
 utils/__pycache__/*
 Machine_Learning/utils/__pycache__/*
+Deep_Learning/Computer_Vision/object_detection/yolo_v1/__pycache__/*
+Deep_Learning/Computer_Vision/object_detection/metrics/__pycache__/*
