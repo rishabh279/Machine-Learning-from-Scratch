@@ -46,6 +46,12 @@ def get_bboxes(
     box_format="midpoint",
     device="cpu",
 ):
+    """
+    This will take input from cellboxes_to_boxes func which will give boxes in format
+    (batch_size. grid*grid). For one eg, it will pass all the respective grid cells
+    to NMS so that we will get most appropriate bounding box. Each appropriate bounding
+    box is added with the batch_idx. So o/p format (batch_idx, probab, confidence, x, y, w, h)
+    """
     all_pred_boxes = []
     all_true_boxes = []
 
@@ -101,6 +107,10 @@ def convert_cellboxes(predictions, S=7):
     by one, resulting in a slower but more readable implementation.
     """
 
+    """
+    This will convert the bounding box coordinates that are given w.r.t cell to w.r.t image.
+    """
+
     predictions = predictions.to("cpu")
     batch_size = predictions.shape[0]
     predictions = predictions.reshape(batch_size, 7, 7, 30)
@@ -137,6 +147,10 @@ def convert_cellboxes(predictions, S=7):
 
 
 def cellboxes_to_boxes(out, S=7):
+    """
+    This will consider each cell of grid, and append in list. So for eg if batch_size=2, then there will for each image
+    49 cells will be stored where each cell represents (probab, confidence, x, y, w, h)
+    """
     converted_pred = convert_cellboxes(out).reshape(out.shape[0], S * S, -1)
     converted_pred[..., 0] = converted_pred[..., 0].long()
     all_bboxes = []

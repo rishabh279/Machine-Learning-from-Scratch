@@ -8,7 +8,7 @@ def mean_average_precision(pred_boxes, true_boxes, iou_threshold,
                            box_format="midpoint", num_classes=20):
     average_precisions = []
     epsilon = 1e-6
-
+    #pred_boxes format for each bounding box -> (batch_idx, probab, confidence, x, y, w, h)
     for c in range(num_classes):
         detections = []
         ground_truths = []

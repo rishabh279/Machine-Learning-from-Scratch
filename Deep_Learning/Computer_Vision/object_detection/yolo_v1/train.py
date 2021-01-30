@@ -26,15 +26,15 @@ torch.manual_seed(seed)
 LEARNING_RATE = 2e-5
 #DEVICE = "cuda" if torch.cuda.is_available else "cpu"
 DEVICE = "cpu"
-BATCH_SIZE = 4 # 64 in original paper but I don't have that much vram, grad accum?
+BATCH_SIZE = 4
 WEIGHT_DECAY = 0
 EPOCHS = 5
 NUM_WORKERS = 0
 PIN_MEMORY = True
 LOAD_MODEL = False
 LOAD_MODEL_FILE = "overfit.pth.tar"
-IMG_DIR = "Deep_Learning/data/yolo_v1/images"
-LABEL_DIR = "Deep_Learning/data/yolo_v1/labels"
+IMG_DIR = "/home/rishabh/PycharmProjects/ml_from_scratch/Deep_Learning/data/yolo_v1/images"
+LABEL_DIR = "/home/rishabh/PycharmProjects/ml_from_scratch/Deep_Learning/data/yolo_v1/labels"
 
 
 class Compose(object):
@@ -79,14 +79,14 @@ def main():
         load_checkpoint(torch.load(LOAD_MODEL_FILE), model, optimizer)
 
     train_dataset = VOCDataset(
-        "Deep_Learning/data/yolo_v1/8examples.csv",
+        "/home/rishabh/PycharmProjects/ml_from_scratch/Deep_Learning/data/yolo_v1/8examples.csv",
         transform=transform,
         img_dir=IMG_DIR,
         label_dir=LABEL_DIR
     )
 
     test_dataset = VOCDataset(
-        "Deep_Learning/data/yolo_v1/test.csv",
+        "/home/rishabh/PycharmProjects/ml_from_scratch/Deep_Learning/data/yolo_v1/test.csv",
         transform=transform,
         img_dir=IMG_DIR,
         label_dir=LABEL_DIR

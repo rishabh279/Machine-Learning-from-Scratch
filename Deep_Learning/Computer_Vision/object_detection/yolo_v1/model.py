@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from torchsummary import summary
 
 architecture_config = [
     (7, 64, 2, 3),
@@ -104,8 +105,9 @@ class Yolov1(nn.Module):
 def test(S=7, B=2, C=20):
     model = Yolov1(split_size=S, num_boxes=B, num_classes=C)
     x = torch.randn((2, 3, 448, 448))
+    print(summary(model, x))
     print(model(x).shape)
 
 
-# if __name__ == '__main__':
-#     test()
+if __name__ == '__main__':
+    test()
