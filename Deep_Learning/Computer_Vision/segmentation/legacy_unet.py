@@ -99,7 +99,6 @@ class UNet(nn.Module):
         x = self.up_conv_4(torch.cat([x, y], 1))
 
         x = self.out(x)
-        print(x.size())
 
         return x
 
@@ -107,4 +106,6 @@ class UNet(nn.Module):
 if __name__ == '__main__':
     image = torch.rand((1, 1, 572, 572))
     model = UNet()
+    print(model)
+    print("-------")
     print(model(image))
